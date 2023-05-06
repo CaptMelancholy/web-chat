@@ -1,13 +1,108 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.cdnfonts.com/css/basier");
+
+*,
+*::after,
+*::before {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  box-sizing: inherit;
+  font-size: 62, 5%;
+}
+
+body {
+  font-family: "Basier Circle", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  height: 100vh;
+  width: 100%;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+:root {
+  --button-bg-color: #00000089;
+  --button-border-color: #000000;
+  --button-init-color: #fffdfd;
+  --button-shadow-color: rgb(33, 33, 33);
+  --button-hover-color: #ffffff;
+  --button-text-hover-color: #000000;
+  --input-init-color: #2b2b2b;
+  --label-init-color: #fff;
+}
+
+.button__container {
+  text-align: center;
+}
+
+.button {
+  background: var(--button-bg-color);
+  color: var(--button-init-color);
+  border: 0px solid var(--button-border-color);
+  border-radius: 1.5rem;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  padding: 1rem 1.6rem;
+  text-decoration: none #0d172a solid;
+  transition: all 0.3s ease-out;
+  box-shadow: 0px 3px 4px var(--button-shadow-color);
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  background-color: var(--button-hover-color);
+  color: var(--button-text-hover-color);
+  box-shadow: 0px 3px 6px var(--button-shadow-color);
+}
+
+@media (min-width: 768px) {
+  .button {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+  }
+}
+
+.form__field {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+}
+
+.field__label {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: var(--label-init-color);
+  display: block;
+  transition: all 0.3s;
+  transform: translateY(0rem);
+}
+
+.field__input {
+  color: var(--input-init-color);
+  margin: 0 auto;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 1px solid var(--button-border-color);
+  box-shadow: 0px 1px 4px var(--button-shadow-color);
+  display: block;
+  transition: all 0.3s;
+}
+
+.field__input:placeholder-shown + .field__label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-1rem);
+  -webkit-transform: translateY(-1rem);
 }
