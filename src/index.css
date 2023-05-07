@@ -1,25 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.cdnfonts.com/css/basier");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;500&display=swap');
 
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
-  font-size: 62, 5%;
 }
 
 body {
-  font-family: "Basier Circle", sans-serif;
+  font-family: JetBrains Mono, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  background: #282c34;
   height: 100vh;
   width: 100%;
+}
+
+input {
+  font-family: inherit;
 }
 
 code {
@@ -36,7 +39,66 @@ code {
   --button-text-hover-color: #000000;
   --input-init-color: #2b2b2b;
   --label-init-color: #fff;
+  --word1-init-color: #fa8231;
+  --word2-init-color: #a9b0bd;
+  --word3-init-color: #c678dd;
 }
+
+::placeholder {
+  font-family: JetBrains Mono, monospace;
+  
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.title > div {
+  overflow: hidden;
+  position: relative;
+  float: right;
+  height: 65px;
+  padding-top: 10px;
+  margin-top: -10px;
+}
+
+.flip3 > li {
+  height: 45px;
+  margin-bottom: 45px;
+  display: block;
+  padding: 0 10px;
+}
+
+.flip3 {
+  animation: flip3 5s ease-in-out infinite;
+}
+
+@keyframes flip3 {
+  0% { margin-top: -270px; }
+  5% { margin-top: -180px; }
+  33% { margin-top: -180px; }
+  38% { margin-top: -90px; }
+  66% { margin-top: -90px; }
+  71% { margin-top: 0px; }
+  99.99% { margin-top: 0px; }
+  100% { margin-top: -270px; }
+}
+
+.word1 {
+  color: var(--word1-init-color);
+}
+
+.word2 {
+  color: var(--word2-init-color);
+}
+
+.word3 {
+  color: var(--word3-init-color);
+}
+
+
 
 .button__container {
   text-align: center;
@@ -47,6 +109,7 @@ code {
   color: var(--button-init-color);
   border: 0px solid var(--button-border-color);
   border-radius: 1.5rem;
+  font-family: inherit;
   font-size: 18px;
   font-weight: 600;
   line-height: 1;
@@ -57,8 +120,6 @@ code {
   text-decoration: none #0d172a solid;
   transition: all 0.3s ease-out;
   box-shadow: 0px 3px 4px var(--button-shadow-color);
-  user-select: none;
-  touch-action: manipulation;
 }
 
 .button:hover {
@@ -75,12 +136,14 @@ code {
 }
 
 .form__field {
-  font-family: "Roboto", sans-serif;
+  font-family: inherit;
   font-size: 15px;
 }
 
+
+
 .field__label {
-  margin-left: 20px;
+  margin-left: 150px;
   margin-top: 10px;
   margin-bottom: 10px;
   color: var(--label-init-color);
@@ -105,4 +168,90 @@ code {
   visibility: hidden;
   transform: translateY(-1rem);
   -webkit-transform: translateY(-1rem);
+}
+
+.chat {
+  display: flex;
+  height: 80vh;
+  width: 70vw;
+  border: 1px solid rgba(159, 183, 197, 0.2);
+  background: var(--input-init-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chat-users {
+  border-right: 1px solid rgba(159, 183, 197, 0.1);
+  padding: 20px;
+  width: auto;
+  background-color: #f6f9fa;
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding: 30px;
+}
+
+.messages {
+  flex: 1;
+  height: calc(100% - 155px);
+  overflow: auto;
+}
+
+.message {
+  margin-bottom: 20px;
+}
+
+.message p {
+  display: inline-flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  width: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #7160ff;
+  padding: 10px 15px 15px;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.message span {
+  color: var(--label-init-color);
+  font-size: 14px;
+}
+
+.chat-users ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chat-users ul li {
+  margin-top: 10px;
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 8px 14px;
+  box-shadow: 0 3px 5px rgba(159, 183, 197, 0.1);
+  font-weight: 500;
+}
+
+.chat-messages form {
+  display:inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chat-messages form textarea {
+  width: 85%;
+  min-height: 60%;
+  font-family: inherit;
+  font-size: 24px;
+  resize: none;
+  border-radius: 10px;
+  text-align: justify;
 }
