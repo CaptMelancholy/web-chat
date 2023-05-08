@@ -65,6 +65,10 @@ io.on('connection', (socket) => {
             if (value.get('users').delete(socket.id)) {
                 const users = [...value.get('users').values()];
                 socket.broadcast.to(roomID).emit('ROOM:SET_USERS', users);
+                // if(users.length === 0)
+                // {
+                //     rooms.delete(roomID); 
+                // }
             }
         });
     });

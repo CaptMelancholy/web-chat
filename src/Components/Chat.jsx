@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import socket from "../socket";
 
-export default function Chat({ users, messages, roomID, userName }) {
+export default function Chat({ users, messages, roomID, userName, onAddMessage }) {
   const [messageValue, setMessageValue] = React.useState("");
+
+  const messagesRef = useRef(null);
+
+  const onKeyDownHandler = e => {
+    if(e.code === 'Enter' && !e.shiftKey)
+    {
+      onSendMessage();
+    }
+  }
+
   function getTime() {
     var today = new Date();
     let date =
@@ -16,6 +26,7 @@ export default function Chat({ users, messages, roomID, userName }) {
     let dateTime = date + " " + time;
     return dateTime;
   }
+
   const onSendMessage = () => {
     socket.emit("ROOM:NEW_MESSAGE", {
       roomID,
@@ -23,7 +34,18 @@ export default function Chat({ users, messages, roomID, userName }) {
       text: messageValue,
       time: getTime(),
     });
+    onAddMessage({
+      userName,
+      text: messageValue,
+      time: getTime(),
+    });
+    setMessageValue('');
   };
+
+
+  useEffect(() => {
+    messagesRef.current.scrollTo(0, 99999);
+  }, [messages]);
 
   return (
     <div className="chat">
@@ -38,7 +60,7 @@ export default function Chat({ users, messages, roomID, userName }) {
         </ul>
       </div>
       <div className="chat-messages">
-        <div className="messages">
+        <div ref={messagesRef} className="messages">
           {messages.map((message) => (
             <div className="message">
               <p> {message.text}</p>
@@ -57,6 +79,7 @@ export default function Chat({ users, messages, roomID, userName }) {
             placeholder="Write a message..."
             onChange={(e) => setMessageValue(e.target.value)}
             value={messageValue}
+            onKeyDown={onKeyDownHandler}
           ></textarea>
           <button onClick={onSendMessage} type="button" className="button">
             Send
