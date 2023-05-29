@@ -109,7 +109,7 @@ input[type="file"] {
   display: none;
 }
 /* ALL IN ALL YOU CAN IMPLEMENT THIS BY WEBKIT. input[type="file"]::file-selector-button*/
-.button, label {
+.button, #choose-input-file {
   background: var(--button-bg-color);
   color: var(--button-init-color);
   border: 0px solid var(--button-border-color);
@@ -127,7 +127,7 @@ input[type="file"] {
   box-shadow: 0px 3px 4px var(--button-shadow-color);
 }
 
-.button:hover, label:hover  {
+.button:hover, #choose-input-file:hover  {
   background-color: var(--button-hover-color);
   color: var(--button-text-hover-color);
   box-shadow: 0px 3px 6px var(--button-shadow-color);

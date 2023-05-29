@@ -34,6 +34,14 @@ export default function Chat({
   }
 
   const onSendMessage = () => {
+    if(!fileValue && !messageValue)
+    {
+      return;
+    }
+    if(messageValue.trim() === "")
+    {
+      return;
+    }
     if (fileValue) {
       const messageObject = {
         roomID,
@@ -146,7 +154,7 @@ export default function Chat({
             onKeyDown={onKeyDownHandler}
           ></textarea>
           <input onChange={onSelect} type="file" id="input-file"/>
-          <label for="input-file">CHOOSE A FILE</label>
+          <label for="input-file" id="choose-input-file">CHOOSE A FILE</label>
           <button onClick={onSendMessage} type="button" className="button">
             SEND
           </button>
