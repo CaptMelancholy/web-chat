@@ -1,0 +1,14 @@
+{
+    "ru": {
+      "translation": {
+        "BUTTON_CONNECT": "ПОДКЛЮЧИТЬСЯ",
+        "BUTTON_CONNECTION": "ПОДКЛЮЧЕНИЕ...",
+        "BUTTON_SEND": "ОТПРАВИТЬ",
+        "PLACEHOLDER_ID": "ID КОМНАТЫ",
+        "PLACEHOLDER_NAME": "Имя Пользователя",
+        "PLACEHOLDER_TEXTAREA": "Напишите сообщение...",
+        "ROOM_INFO": "Комната",
+        "ROOM_ONLINE": "Онлайн"
+      }
+    }
+}

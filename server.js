@@ -44,18 +44,37 @@ app.post('/rooms', (req, res) => {
 io.on('connection', (socket) => {
     socket.on('ROOM:JOIN', ({ roomID, userName }) => {
         socket.join(roomID);
+        if(rooms.get(roomID).get('users').size === 0)
+        {
+            rooms.get(roomID).get('messages').length = 0;
+        }
         rooms.get(roomID).get('users').set(socket.id, userName);
         const users = [...rooms.get(roomID).get('users').values()];
         socket.broadcast.to(roomID).emit('ROOM:SET_USERS', users);
     });
 
 
-    socket.on('ROOM:NEW_MESSAGE', ({ roomID, userName, text, time }) => {
-        const obj = {
-            userName,
-            text,
-            time
-        };
+    socket.on('ROOM:NEW_MESSAGE', ({ roomID, userName, text, time, type, mineType, fileName }) => {
+        let obj;
+        if(type === "text")
+        {
+            obj = {
+                userName,
+                text,
+                time,
+                type
+            };
+        } else {
+            obj = {
+                userName,
+                text,
+                time,
+                type,
+                mineType,
+                fileName
+            };
+        }
+        
         rooms.get(roomID).get('messages').push(obj);
         socket.broadcast.to(roomID).emit('ROOM:NEW_MESSAGE', obj);
     });
@@ -65,10 +84,6 @@ io.on('connection', (socket) => {
             if (value.get('users').delete(socket.id)) {
                 const users = [...value.get('users').values()];
                 socket.broadcast.to(roomID).emit('ROOM:SET_USERS', users);
-                // if(users.length === 0)
-                // {
-                //     rooms.delete(roomID); 
-                // }
             }
         });
     });

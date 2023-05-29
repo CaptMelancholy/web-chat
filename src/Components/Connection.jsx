@@ -1,11 +1,15 @@
 import React from "react";
 import axios from "axios";
+import { initReactI18next } from "react-i18next";
 
 function Connection({ onLogin }) {
   const [roomID, setRoomID] = React.useState("");
   const [userName, setUserName] = React.useState("");
   const [isLoading, setLoading] = React.useState(false);
   // Control enter
+
+ // i18next.use(initReactI18next).init({en.json, ru.json}, lng: "en")
+
   const onEnter = async() => {
     if (!roomID || !userName) {
       return alert("Incorrect input!");
@@ -18,6 +22,9 @@ function Connection({ onLogin }) {
     await axios.post('/rooms', obj);
     onLogin(obj);
   };
+
+  
+
   return (
     <div>
       <h2 className="title">

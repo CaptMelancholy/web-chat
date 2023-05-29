@@ -1,0 +1,14 @@
+{
+    "en": {
+      "translation": {
+        "BUTTON_CONNECT": "CONNECT",
+        "BUTTON_CONNECTION": "CONNECTION...",
+        "BUTTON_SEND": "SEND",
+        "PLACEHOLDER_ID": "ROOM ID",
+        "PLACEHOLDER_NAME": "User Name",
+        "PLACEHOLDER_TEXTAREA": "Write a message...",
+        "ROOM_INFO": "Room",
+        "ROOM_ONLINE": "Online"
+      }
+    }
+}
